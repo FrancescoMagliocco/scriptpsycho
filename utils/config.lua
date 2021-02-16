@@ -1,13 +1,11 @@
--- luacheck: ignore Config
-Config = {}
+-- luacheck: ignore json
+local Config = {}
 
 
 local entry         = "ScriptPsycho"
 local configFile    = "scriptpsychoconfig.json"
 
---[[
---  { { statStr, statValue }, { statStr, statValue } }
---]]
+-- { { statStr, statValue }, { statStr, statValue } }
 local DEFAULT_AUTO_STATS                = {}
 local DEFAULT_AMMO_TO_REFILL            = {
     "Ammo.HandgunAmmo",
@@ -25,7 +23,6 @@ local DEFAULT_AMMO_THRESHOLD_AND_MAX    = {
     [DEFAULT_AMMO_TO_REFILL[5]] = { 40, 600 }
 }
 
--- luacheck: ignore Lua
 local DEFAULTS  = {
     modEnabled              = true,
     autoCmdsEnabled         = true,
@@ -50,10 +47,8 @@ function Config.CreateDflt()
     Config.Write(configFile, DEFAULT_CONFIG)
 end
 
---[[
---  Gets and returns value of key; if value of key is nil, add key with value
---  default and return newwly set value
---]]
+-- Gets and returns value of key; if value of key is nil, add key with value
+-- default and return newwly set value
 function Config.GetSet(key, default, fileName)
     default = default or DEFAULTS[key]
     -- Not using 'not default' as default could be false
@@ -75,10 +70,7 @@ function Config.Get(key, fileName)
     return value
 end
 
---[[
---  If key isn't in table, key will be created.
---]]
--- luacheck: ignore file
+-- If key isn't in table, key will be created.
 function Config.Set(key, value, fileName)
     if value == nil then
         print("Config.Set(): Second argument 'value' must be provided")
@@ -87,10 +79,8 @@ function Config.Set(key, value, fileName)
 
     fileName = fileName or configFile
     local table = Config.Read(fileName)
-    --[[
-    --  Not using 'table == nil' as what is returned from Config.Read() is never
-    --  false.
-    --]]
+    -- Not using 'table == nil' as what is returned from Config.Read() is never
+    -- false.
     if not table then print("Config.Set(): Table is nil") return end
     table[entry][key] = value
     Config.Write(fileName, table)
@@ -110,10 +100,8 @@ function Config.Read(fileName)
         end
     end
 
-    --[[
-    --  Storing in variable so we can close the stream.
-    --  Do we need to close the stream?  Or will it be closed automatically?
-    --]]
+    -- Storing in variable so we can close the stream.
+    -- Do we need to close the stream?  Or will it be closed automatically?
     local contents = file:read("a")
     -- Should we close here as we aren't going to do anymore reading?
     file:close()
