@@ -1,8 +1,8 @@
 -- luacheck: ignore Player
-local Skill = { "", 0 }
+local Skill = { "", -1 }
 
 function Skill:new(gamedataProfType)
-    gamedataProfType = gamedataProfType or { "", 0 }
+    gamedataProfType = gamedataProfType or { "", -1 }
     setmetatable(gamedataProfType, self)
     self.__index = self
     return gamedataProfType
