@@ -1,10 +1,6 @@
 -- luacheck: ignore Stats gamedataStatType
 local PlayerStats   = {}
 
---[[
---  This approach may be unorthadoxed, but my intention was to reduce the amount
---  of return statements and use one explicitily.
---  ]]
 local CheckStat = function(funcName, statName)
     if not statName or statName == "" then
         print(funcName, "statName must be specified.")
@@ -48,13 +44,11 @@ function PlayerStats.ValueWithinRange(statName, value)
 end
 
 function PlayerStats.ModStat(statName, value)
-    --[[
-    --  TODO We could just use this function to determine if statName is a valid
-    --  stat, or we could created a dedicated function.
+    -- TODO We could just use this function to determine if statName is a valid
+    -- stat, or we could created a dedicated function.
     --
-    --  If we do create a dedicated fucntion, it should be probably be placed
-    --  inside 'statssystem'
-    --]]
+    -- If we do create a dedicated fucntion, it should be probably be placed
+    -- inside 'statssystem'
     if not CheckStatAndValue("PlayerStats.ModStat():", statName, value) then
         return
     end
