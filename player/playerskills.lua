@@ -1,5 +1,5 @@
--- luacheck: ignore PlayerSkills Skill Player gamedataProficiencyType Lua
-PlayerSkills = {}
+-- luacheck: ignore Skill Player gamedataProficiencyType Lua
+local PlayerSkills = {}
 
 local _Skills = nil
 
