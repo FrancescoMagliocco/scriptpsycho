@@ -56,7 +56,6 @@ end
 -- TODO Need to add function to buy perk
 
 function PlayerPerks.init()
-    _Perks = {}
     for _, perkTable in ipairs(gamedataPerkType.GetAll()) do
         _Perks[perkTable[1]:lower():gsub("%W", "")] = Perk:new(perkTable)
     end
