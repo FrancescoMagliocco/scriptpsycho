@@ -1,5 +1,4 @@
---Player = { description = "", rootPath = ScriptPsycho.rootPath }
--- luacheck: ignore Player Config Game SSC
+-- luacheck: ignore Player Config Game
 local Player = {}
 
 Player.Perks        = require("player/playerperks")
