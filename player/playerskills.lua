@@ -1,4 +1,4 @@
--- luacheck: ignore PlayerSkills Skill Player gamedataProficiencyType
+-- luacheck: ignore PlayerSkills Skill Player gamedataProficiencyType Lua
 PlayerSkills = {}
 
 local _Skills = nil
@@ -50,6 +50,7 @@ function PlayerSkills.init()
         _Skills[skillTable[1]:lower():gsub("%W", "")] = Skill:new(skillTable)
     end
 
+    _Skills = Lua.ReadOnly(_Skills)
     return true
 end
 

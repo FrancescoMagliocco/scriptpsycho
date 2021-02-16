@@ -1,4 +1,4 @@
--- luacheck: ignore gamedataPerkType Perk
+-- luacheck: ignore gamedataPerkType Perk Lua
 local PlayerPerks = {}
 
 local _Perks = nil
@@ -61,6 +61,7 @@ function PlayerPerks.init()
         _Perks[perkTable[1]:lower():gsub("%W", "")] = Perk:new(perkTable)
     end
 
+    _Perks = Lua.ReadOnly(_Perks)
     return true
 end
 

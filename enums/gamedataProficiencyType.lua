@@ -1,19 +1,20 @@
+-- luacheck: ignore Lua
 local gamedataProficiencyType = {}
 
-local _gamedataProfType = {
-    { "Assault", 0 },
-    { "Athletics", 1 },
-    { "Brawling", 2 },
-    { "ColdBlood", 3 },
-    { "CombatHacking", 4 },
-    { "Crafting", 5 },
-    { "Demolition", 6 },
-    { "Engineering", 7 },
-    { "Gunslinger", 8 },
-    { "Hacking", 9 },
-    { "Kenjutsu", 10 },
-    { "Level", 11 },
-    { "StreetCred", 12 }
+local _gamedataProfType = Lua.ReadOnly{
+    Lua.ReadOnly{ "Assault", 0 },
+    Lua.ReadOnly{ "Athletics", 1 },
+    Lua.ReadOnly{ "Brawling", 2 },
+    Lua.ReadOnly{ "ColdBlood", 3 },
+    Lua.ReadOnly{ "CombatHacking", 4 },
+    Lua.ReadOnly{ "Crafting", 5 },
+    Lua.ReadOnly{ "Demolition", 6 },
+    Lua.ReadOnly{ "Engineering", 7 },
+    Lua.ReadOnly{ "Gunslinger", 8 },
+    Lua.ReadOnly{ "Hacking", 9 },
+    Lua.ReadOnly{ "Kenjutsu", 10 },
+    Lua.ReadOnly{ "Level", 11 },
+    Lua.ReadOnly{ "StreetCred", 12 }
 }
 
 function gamedataProficiencyType.Get(profName)
