@@ -245,9 +245,9 @@ local _gamedataPerkType = {
 }
 
 function  gamedataPerkType.Get(perkName)
+    perkName = perkName:lower():gsub("%W", "")
     for _, perkTable in ipairs(_gamedataPerkType) do
-        if perkTable[1]:lower():gsub("%W", "")
-                == perkName:lower():gsub("%W", "") then
+        if perkTable[1]:lower():gsub("%W", "") == perkName then
             return perkTable
         end
     end

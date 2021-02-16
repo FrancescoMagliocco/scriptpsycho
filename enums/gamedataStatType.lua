@@ -1010,9 +1010,9 @@ local _gamedataStatType = {
 }
 
 function gamedataStatType.Get(statName)
+    statName = statName:lower():gsub("%W", "")
     for _, statTable in ipairs(_gamedataStatType) do
-        if statTable[1]:lower():gsub("%W", "")
-                == statName:lower():gsub("%W", "") then
+        if statTable[1]:lower():gsub("%W", "") == statName then
             return statTable
         end
     end

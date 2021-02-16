@@ -17,9 +17,9 @@ local _gamedataProfType = {
 }
 
 function gamedataProficiencyType.Get(profName)
+    profName = profName:lower():gsub("%W", "")
     for _, profTable in ipairs(_gamedataProfType) do
-        if profTable[1]:lower():gsub("%W", "")
-                == profName:lower():gsub("%W", "") then
+        if profTable[1]:lower():gsub("%W", "") == profName then
             return profTable
         end
     end
