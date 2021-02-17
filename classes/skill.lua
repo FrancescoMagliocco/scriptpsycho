@@ -80,6 +80,12 @@ function Skill:SetLevel(skillLvl, levelGainReason)
     return true
 end
 
+function Skill:AddExp(amount, levelGainReason)
+    Player.GetDevData():AddExperience(
+        amount, self[2], levelGainReason or telemetryLevelGainReason.Ignore)
+    return true
+end
+
 -- Sets this.m_proficiencies[self[3]].currentLevel to this.m_startingLevel
 -- Sets this.m_proficiencies[self[3]].currentExp to this.m_startingExperience
 -- Calls this.RemoveProficiencyStat(self[3])

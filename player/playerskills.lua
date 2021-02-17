@@ -62,6 +62,26 @@ function PlayerSkills.GetDominatingSkill()
         Skill.GetProfIndexFromType(Skill.GetDominatingProf()))
 end
 
+-- The reason why we are doing the amount check for exp instead of in function
+-- Skill:AddExp() like we do for level in Skill:SetLevel() is we might create a
+-- function to remove exp using Skill:AddExp().  If we do the amount check for
+-- exp in Skill:AddExp(), we wont be able to provide a negative amount to
+-- Skill:AddExp()
+function PlayerSkills.AddSkillExp(amount, skillName, levelGainReason)
+    if not amount or amount <= 0 then
+        print("PlayerSkills.AddSkillExp():", "Amount must be provided and be > 0")
+        return
+    end
+
+    local skill = CheckSkill("PlayerSkills.AddSkillExp():", skillName)
+    if skill and skill:AddExp(
+            amount,
+            telemetryLevelGainReason.Get(levelGainReason)
+                or telemetryLevelGainReason.Ignore) then return true end
+
+    print("PlayerSkills.AddSkillExp():", skillName, "unsucessful")
+end
+
 function PlayerSkills.init()
     for _, skillTable in ipairs(gamedataProficiencyType.GetAll()) do
         _Skills[skillTable[1]:lower():gsub("%W", "")] = Skill:new(skillTable)
