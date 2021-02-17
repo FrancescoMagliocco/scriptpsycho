@@ -1,4 +1,4 @@
--- luacheck: ignore Player telemetryLevelGainReason
+-- luacheck: ignore Player telemetryLevelGainReason gamedataProficiencyType
 local Skill = { "", -1 }
 
 -- Any function that checks if something is >= for the return statement, is also
@@ -98,6 +98,15 @@ end
 
 function Skill.GetDominatingProf()
     return Player.GetDevData():GetDominatingProficiency()
+end
+
+function Skill.GetProfRecordByIndex(profIndex)
+    if not gamedataProficiencyType.GetProfTableFromIndex(profIndex) then
+        print("Skill.GetProfRecordByIndex():", profIndex.." is not a valid index")
+        return
+    end
+
+    return Player.GetDevData():GetProficiencyRecordByIndex(profIndex)
 end
 
 return Skill
