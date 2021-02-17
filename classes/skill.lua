@@ -1,6 +1,10 @@
 -- luacheck: ignore Player
 local Skill = { "", -1 }
 
+-- Any function that checks if something is >= for the return statement, is also
+-- a check to see if the interal called function has succeeded.  Some internal
+-- functions, if something went wrong, -1 is returned.
+
 function Skill:new(gamedataProfType)
     gamedataProfType = gamedataProfType or { "", -1 }
     setmetatable(gamedataProfType, self)
@@ -10,38 +14,38 @@ end
 
 function Skill:GetCurLevel()
     local lvl = Player.GetDevData():GetProficiencyLevel(self[2])
-    return lvl > 0 and lvl or nil
+    return lvl >= 0 and lvl or nil
 end
 
 -- I believe this returns the max level of the tied attribute
 function Skill:GetMaxLevel()
     local lvl = Player.GetDevData():GetProficiencyMaxLevel(self[2])
-    return lvl > 0 and lvl or nil
+    return lvl >= 0 and lvl or nil
 end
 
 function Skill:GetAbsoluteMaxLevel()
     local lvl = Player.GetDevData():GetProficiencyAbsoluteMaxLevel(self[2])
-    return lvl > 0 and lvl or nil
+    return lvl >= 0 and lvl or nil
 end
 
 function Skill:GetCurLvlExp()
     local exp = Player.GetDevData():GetCurrentLevelProficiencyExp(self[2])
-    return exp > 0 and exp or nil
+    return exp >= 0 and exp or nil
 end
 
 function Skill:GetTotalExp()
     local exp = Player.GetDevData():GetTotalProfExpierence(self[2])
-    return exp > 0 and exp or nil
+    return exp >= 0 and exp or nil
 end
 
 function Skill:GetRemainingExpForLevelUp()
     local exp = Player.GetDevData():GetRemainingExpForLevelUp(self[2])
-    return exp > 0 and exp or nil
+    return exp >= 0 and exp or nil
 end
 
 function Skill:GetExpForNextLevel()
     local exp = Player.GetDevData():GetExperienceForNextLevel(self[2])
-    return exp > 0 and exp or nil
+    return exp >= 0 and exp or nil
 end
 
 function Skill:GetProfRecord()
