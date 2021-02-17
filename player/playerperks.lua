@@ -106,6 +106,13 @@ function PlayerPerks.LockPerkAreaForPerk(perkName)
     return perk and perk:LockPerkArea() or nil
 end
 
+function PlayerPerks.LockPerkArea(perkArea)
+    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkArea)
+    if not perkAreaIndex then return end
+    Player.GetDevData():LockPerkArea(perkAreaIndex)
+    return true
+end
+
 function PlayerPerks.HasPerk(perkName)
     local perk = CheckPerk("PlayerPerks.HasPerk():", perkName)
     -- We can't use the return approach similar to PlayerPerks.GetPerkMaxLevel()
