@@ -59,15 +59,14 @@ function PlayerPerks.GetPerkAreaForPerk(perkName)
     return perk and Perk.GetPerkAreaIndex(perk:GetPerkArea()) or nil
 end
 
--- This returns a table
-function PlayerPerks.GetPerkAreaTable(perkArea)
+function PlayerPerks.GetPerkArea(perkArea)
     local perkAreaTable = gamedataPerkArea.Get(perkArea)
     if not perkAreaTable then
         print("PlayerPerks.GetPerkArea():", perkArea.." is not a valid perkArea")
         return
     end
 
-    return perkAreaTable
+    return perkAreaTable[2]
 end
 
 function PlayerPerks.GetPerkAreaRecordForPerk(perkName)
