@@ -16,6 +16,10 @@ function Perk:GetMaxLevel()
     return Player.GetDevData():GetPerkMaxLevel(self[3])
 end
 
+function Perk:GetIndex()
+    return self[3]
+end
+
 function Perk:GetRecord()
     return Player.GetDevData():GetPerkRecord(self[3])
 end
