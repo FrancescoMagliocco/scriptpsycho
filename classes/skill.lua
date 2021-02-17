@@ -92,7 +92,7 @@ end
 
 function Skill.GetProfIndexFromType(profType)
     if not profType then return end
-    local profIndex = Player.GetDevData():GetProficiencyIndexFromType(profType)
+    local profIndex = Player.GetDevData():GetProficiencyIndexByType(profType)
     return profIndex >= 0 and profIndex or nil
 end
 
