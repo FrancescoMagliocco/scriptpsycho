@@ -54,12 +54,12 @@ function PlayerPerks.GetPerkRecord(perkName)
     return perk and perk:GetRecord() or nil
 end
 
-function PlayerPerks.GetPerkAreaForPerk(perkName)
+function PlayerPerks.GetPerkAreaIndexForPerk(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkAreaForPerk():", perkName)
     return perk and Perk.GetPerkAreaIndex(perk:GetPerkArea()) or nil
 end
 
-function PlayerPerks.GetPerkArea(perkArea)
+function PlayerPerks.GetPerkAreaIndex(perkArea)
     local perkAreaTable = gamedataPerkArea.Get(perkArea)
     if not perkAreaTable then
         print("PlayerPerks.GetPerkArea():", perkArea.." is not a valid perkArea")
