@@ -20,6 +20,10 @@ function Perk:GetIndex()
     return self[3]
 end
 
+function Perk:GetName()
+    return self[1]
+end
+
 function Perk:GetRecord()
     return Player.GetDevData():GetPerkRecord(self[3])
 end
