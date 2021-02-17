@@ -90,4 +90,10 @@ function Skill:ResetLevel(areYouSure)
     return true
 end
 
+function Skill.GetProfIndexFromType(profType)
+    if not profType then return end
+    local profIndex = Player.GetDevData():GetProficiencyIndexFromType(profType)
+    return profIndex >= 0 and profIndex or nil
+end
+
 return Skill
