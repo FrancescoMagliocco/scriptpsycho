@@ -1,4 +1,4 @@
--- luacheck: ignore gamedataPerkType Perk Lua gamedataPerkArea
+-- luacheck: ignore gamedataPerkType Perk Lua gamedataPerkArea Player
 local PlayerPerks = {}
 
 local _Perks = nil
@@ -72,6 +72,16 @@ end
 function PlayerPerks.GetPerkAreaRecordForPerk(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkAreaRecordForPerk():", perkName)
     return perk and perk:GetPerkAreaRecord() or nil
+end
+
+-- I feel like this should be in the class perk...  But then again at the
+-- sametime, I think this is in the correct spot..
+function PlayerPerks.GetPerkAreaRecord(perkArea)
+    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkArea)
+    -- Maybe display message... Even though PlayerPerks.GetPerkAreaIndex() would
+    -- have displayed a message if perkArea was not a valid perkArea?..
+    if not perkAreaIndex then return end
+    return Player.GetDevData():GetPerkAreaRecord(perkAreaIndex)
 end
 
 function PlayerPerks.HasPerk(perkName)
