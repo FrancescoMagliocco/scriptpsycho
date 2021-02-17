@@ -31,37 +31,37 @@ end
 
 function PlayerPerks.GetPerkLevel(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkLevel():", perkName)
-    return perk and perk:GetCurLevel() or nil
+    return perk and perk:GetCurLevel()
 end
 
 function PlayerPerks.IncreasePerkLevel(perkName)
     local perk = CheckPerk("PlayerPerks.IncreasePerkLevel():", perkName)
-    return perk and perk:IncreaseLevel() or nil
+    return perk and perk:IncreaseLevel()
 end
 
 function PlayerPerks.GetPerkMaxLevel(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkMaxLevel():", perkName)
-    return perk and perk:GetMaxLevel() or nil
+    return perk and perk:GetMaxLevel()
 end
 
 function PlayerPerks.GetPerkIndex(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkIndex():", perkName)
-    return perk and perk:GetIndex() or nil
+    return perk and perk:GetIndex()
 end
 
 function PlayerPerks.GetPerkName(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkName():", perkName)
-    return perk and perk:GetName() or nil
+    return perk and perk:GetName()
 end
 
 function PlayerPerks.GetPerkRecord(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkRecord():", perkName)
-    return perk and perk:GetRecord() or nil
+    return perk and perk:GetRecord()
 end
 
 function PlayerPerks.GetPerkAreaIndexForPerk(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkAreaForPerk():", perkName)
-    return perk and Perk.GetPerkAreaIndex(perk:GetPerkArea()) or nil
+    return perk and Perk.GetPerkAreaIndex(perk:GetPerkArea())
 end
 
 function PlayerPerks.GetPerkAreaIndex(perkArea)
@@ -76,7 +76,7 @@ end
 
 function PlayerPerks.GetPerkAreaRecordForPerk(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkAreaRecordForPerk():", perkName)
-    return perk and perk:GetPerkAreaRecord() or nil
+    return perk and perk:GetPerkAreaRecord()
 end
 
 -- I feel like this should be in the class perk...  But then again at the
@@ -91,7 +91,7 @@ end
 
 function PlayerPerks.UnlockPerkAreaForPerk(perkName)
     local perk = CheckPerk("PlayerPerks.UnlockPerkAreaForPerk():", perkName)
-    return perk and perk:UnlockPerkArea() or nil
+    return perk and perk:UnlockPerkArea()
 end
 
 function PlayerPerks.UnlockPerkArea(perkArea)
@@ -103,7 +103,7 @@ end
 
 function PlayerPerks.LockPerkAreaForPerk(perkName)
     local perk = CheckPerk("PlayerPerks.LockPerkAreaForPerk():", perkName)
-    return perk and perk:LockPerkArea() or nil
+    return perk and perk:LockPerkArea()
 end
 
 function PlayerPerks.LockPerkArea(perkArea)
@@ -129,7 +129,7 @@ end
 
 function PlayerPerks.RemovePerk(perkName)
     local perk = CheckPerk("PlayerPerks.RemovePerk():", perkName)
-    return perk and perk:RemovePerk() or nil
+    return perk and perk:RemovePerk()
 end
 
 function PlayerPerks.IsPerkUnlocked(perkName)
