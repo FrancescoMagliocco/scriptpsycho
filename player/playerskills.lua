@@ -45,6 +45,14 @@ function PlayerSkills.SetSkillLevel(skillName, level)
     print("PlayerSkills.SetSkillLevel():", skillName, "unsuccessful")
 end
 
+-- To make sure that the user wants to reset the level for skillName, areYouSure
+-- and areYouReallySure must be true
+function PlayerSkills.ResetSkillLevel(skillName, areYouSure, areYouReallySure)
+    if areYouSure ~= true and areYouReallySure ~= true then return end
+    local skill = CheckSkill("PlayerSkills.ResetSkillLevel():", skillName)
+    return skill and skill:ResetLevel(true) or nil
+end
+
 function PlayerSkills.init()
     for _, skillTable in ipairs(gamedataProficiencyType.GetAll()) do
         _Skills[skillTable[1]:lower():gsub("%W", "")] = Skill:new(skillTable)

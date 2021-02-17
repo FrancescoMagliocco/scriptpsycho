@@ -75,4 +75,14 @@ function Skill:SetLevel(skillLvl)
     return true
 end
 
+-- Sets this.m_proficiencies[self[3]].currentLevel to this.m_startingLevel
+-- Sets this.m_proficiencies[self[3]].currentExp to this.m_startingExperience
+-- Calls this.RemoveProficiencyStat(self[3])
+-- Calls this.AddProficiencyStat(self[3], this.m_startingLevel)
+function Skill:ResetLevel(areYouSure)
+    if not areYouSure then return end
+    Player.GetDevData():ResetProficiencyLevel(self[2])
+    return true
+end
+
 return Skill
