@@ -122,6 +122,11 @@ function PlayerPerks.HasPerk(perkName)
     if perk then return perk:HasPerk() end
 end
 
+function PlayerPerks.BuyPerk(perkName, giveDevPoint)
+    local perk = CheckPerk("PlayerPerks.BuyPerk():", perkName)
+    return perk and perk:BuyPerk(giveDevPoint)
+end
+
 function PlayerPerks.IsPerkUnlocked(perkName)
     local perk = CheckPerk("PlayerPerk.IsPerkUnlocked():", perkName)
     if perk then return perk:IsPerkAreaUnlocked() end

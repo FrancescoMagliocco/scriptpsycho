@@ -66,6 +66,20 @@ function Perk:HasPerk()
     return Player.GetDevData():HasPerk(self[3])
 end
 
+function Perk:BuyPerk(giveDevPoint)
+    if self:GetCurLevel() >= self:GetMaxLevel()
+            or not giveDevPoint
+            and not self:CanPerkBeBought() then
+        return
+    end
+
+    if giveDevPoint then
+        Player.GetDevData():AddDevelopmentPoint(1, gamedataDevelopmentPointType.Primary)
+    end
+
+    return Player.GetDevData():BuyPerk(self[3])
+end
+
 -- returns false if PerkMaxLevel < Perk current level or if Player has no Perk
 -- Dev Points
 function Perk:CanPerkBeBought()
