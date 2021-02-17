@@ -64,6 +64,12 @@ function Perk:GetProfFromPerkArea()
     return Player.GetDevData():GetProficiencyFromPerkArea(self:GetPerkArea())
 end
 
+function Perk.GetPerkAreaIndex(perkArea)
+    if not perkArea then return end
+    local perkAreaIndex = Player.GetDevData():GetPerkAreaIndex(perkArea)
+    return perkAreaIndex >= 0 and perkAreaIndex or nil
+end
+
 -- TODO Need to add function to buy perk
 
 return Perk
