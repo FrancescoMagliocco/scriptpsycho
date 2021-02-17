@@ -1,4 +1,4 @@
--- luacheck: ignore gamedataPerkType Perk Lua
+-- luacheck: ignore gamedataPerkType Perk Lua gamedataPerkArea
 local PlayerPerks = {}
 
 local _Perks = nil
@@ -57,6 +57,17 @@ end
 function PlayerPerks.GetPerkAreaForPerk(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkAreaForPerk():", perkName)
     return perk and Perk.GetPerkAreaIndex(perk:GetPerkArea()) or nil
+end
+
+-- This returns a table
+function PlayerPerks.GetPerkAreaTable(perkArea)
+    local perkAreaTable = gamedataPerkArea.Get(perkArea)
+    if not perkAreaTable then
+        print("PlayerPerks.GetPerkArea():", perkArea.." is not a valid perkArea")
+        return
+    end
+
+    return perkAreaTable
 end
 
 function PlayerPerks.GetPerkAreaRecordForPerk(perkName)
