@@ -9,6 +9,10 @@ PlayerDevelopmentSystem.PlayerDevelopmentData = Lua.ReadOnly{
         -- we are explicitly converting the result of string functions to number
         return gamedataLifePath.GetLifePathTableFromIndex(
             tonumber(lifePath:sub(lifePath:find("#(") + 1, -2)))[1]
+    end,
+    -- Returns GameObject
+    GetOwner    = function()
+        return Player.GetDevData():GetOwner()
     end
 }
 
