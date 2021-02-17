@@ -13,6 +13,10 @@ PlayerDevelopmentSystem.PlayerDevelopmentData = Lua.ReadOnly{
     -- Returns GameObject
     GetOwner    = function()
         return Player.GetDevData():GetOwner()
+    end,
+    -- Returns EntityID
+    GetOwnerID  = function()
+        return Player.GetDevData():GetOwnerID()
     end
 }
 
