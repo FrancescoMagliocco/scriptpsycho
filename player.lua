@@ -1,4 +1,4 @@
--- luacheck: ignore Player Config Game
+-- luacheck: ignore Player Config Game PlayerDevSys
 local Player = {}
 
 Player.Perks        = require("player/playerperks")
@@ -67,6 +67,10 @@ end
 
 function Player.Run()
     Player.Stats.ModStat("MaxSpeed", runSpeed)
+end
+
+function Player.GetLifePath()
+    return PlayerDevSys.PlayerDevelopmentData.GetLifePath()
 end
 
 function Player.init()

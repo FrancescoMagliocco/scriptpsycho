@@ -1,17 +1,16 @@
 -- luacheck: ignore SP Lua Config Attribs Skill Perk Player TS SSC Game
 -- luacheck: ignore gamedataStatType gamedataProficiencyType gamedataPerkType
--- luacheck: ignore Stats
+-- luacheck: ignore Stats gamedataLifePathType PlayerDevSys
 local SP = {}
 
 
 Lua     = require("utils/luahelper")
 SP.Lua = Lua
 
-
-gamedataStatType        = require("enums/gamedataStatType")
 Config  = require("utils/config")
 SP.Config = Config
 Skill   = require("classes/skill")
+PlayerDevSys    = require("systems/playerdevsys")
 
 Perk    = require("classes/perk")
 Stats   = require("systems/statssystem")
@@ -21,8 +20,10 @@ SP.Player = Player
 --TS  = Game.GetTransactionSystem()
 --SSC = Game.GetScriptableSystemsContainer()
 
+gamedataStatType        = require("enums/gamedataStatType")
 gamedataProficiencyType = require("enums/gamedataProficiencyType")
 gamedataPerkType        = require("enums/gamedataPerkType")
+gamedataLifePathType    = require("enums/gamedataLifePathType")
 
 local opts  = {
     modEnabled              = nil,
@@ -73,11 +74,9 @@ function SP.UpdateAutoCmds(value)
 end
 
 function SP.DoSetStats()
-    --[[
-    --  Not going to check if table is empty as the user may not want any stats
-    --  to be modified, and may have not been aware the option
-    --  'autoStatsEnabled' exists.
-    --]]
+    -- Not going to check if table is empty as the user may not want any stats
+    -- to be modified, and may have not been aware the option
+    -- 'autoStatsEnabled' exists.
     for _, value in pairs(SP.Get("autoStats")) do
         if #value < 2 then
             print("SP.DoSetStats():", "Format for 'autoStats' is:")
