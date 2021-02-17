@@ -199,6 +199,11 @@ function PlayerPerks.IsPerkUnlocked(perkName)
     if perk then return perk:IsPerkAreaUnlocked() end
 end
 
+function PlayerPerks.RemoveAllPerks(areYouSure, areYouReallySure)
+    if areYouSure ~= true and areYouReallySure ~= true then return end
+    Player.GetDevData():RemoveAllPerks()
+end
+
 function PlayerPerks.init()
     for _, perkTable in ipairs(gamedataPerkType.GetAll()) do
         _Perks[perkTable[1]:lower():gsub("%W", "")] = Perk:new(perkTable)
