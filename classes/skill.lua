@@ -76,7 +76,7 @@ end
 function Skill:SetLevel(skillLvl, levelGainReason)
     if not skillLvl >= 0 or skillLvl > self:GetMaxLevel() then return end
     Player.GetDevData():SetLevel(
-        self[2],skillLvl, levelGainReason or telemetryLevelGainReason.Ignore)
+        self[2], skillLvl, levelGainReason or telemetryLevelGainReason.Ignore)
     return true
 end
 
