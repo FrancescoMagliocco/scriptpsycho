@@ -1,4 +1,4 @@
--- luacheck: ignore Player
+-- luacheck: ignore Player telemetryLevelGainReason
 local Skill = { "", -1 }
 
 -- Any function that checks if something is >= for the return statement, is also
@@ -73,9 +73,10 @@ end
 -- or not to display message.  If no issue, return nil
 -- XXX Make sure that when implemented, that all calling functions have been
 -- updated to understand what is returned
-function Skill:SetLevel(skillLvl)
+function Skill:SetLevel(skillLvl, levelGainReason)
     if not skillLvl >= 0 or skillLvl > self:GetMaxLevel() then return nil end
-    Player.GetDevData():SetLevel(self[2], skillLvl)
+    Player.GetDevData():SetLevel(
+        self[2],skillLvl, levelGainReason or telemetryLevelGainReason.Ignore)
     return true
 end
 

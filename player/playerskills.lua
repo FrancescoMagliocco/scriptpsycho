@@ -1,4 +1,5 @@
 -- luacheck: ignore Skill Player gamedataProficiencyType Lua
+-- luacheck: ignore telemetryLevelGainReason
 local PlayerSkills = {}
 
 local _Skills = nil
@@ -38,9 +39,12 @@ function PlayerSkills.GetSkillLevel(skillName)
     return skill and skill:GetCurLevel() or nil
 end
 
-function PlayerSkills.SetSkillLevel(skillName, level)
+function PlayerSkills.SetSkillLevel(skillName, level, levelGainReason)
     local skill = CheckSkill("PlayerSkills.SetSkillLevel():", skillName)
-    if skill and skill:SetLevel(level) then return true end
+    if skill and skill:SetLevel(
+            level,
+            telemetryLevelGainReason.Get(levelGainReason)
+                or telemetryLevelGainReason.Ignore) then return true end
 
     print("PlayerSkills.SetSkillLevel():", skillName, "unsuccessful")
 end

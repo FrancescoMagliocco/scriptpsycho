@@ -1,6 +1,7 @@
 -- luacheck: ignore SP Lua Config Attribs Skill Perk Player TS SSC Game
 -- luacheck: ignore gamedataStatType gamedataProficiencyType gamedataPerkType
 -- luacheck: ignore Stats gamedataLifePathType PlayerDevSys
+-- luacheck: ignore telemetryLevelGainReason
 local SP = {}
 
 
@@ -17,13 +18,12 @@ Stats   = require("systems/statssystem")
 Player  = require("player")
 SP.Player = Player
 
---TS  = Game.GetTransactionSystem()
---SSC = Game.GetScriptableSystemsContainer()
-
 gamedataStatType        = require("enums/gamedataStatType")
 gamedataProficiencyType = require("enums/gamedataProficiencyType")
 gamedataPerkType        = require("enums/gamedataPerkType")
 gamedataLifePathType    = require("enums/gamedataLifePathType")
+
+telemetryLevelGainReason    = require("enums/telemetryLevelGainReason")
 
 local opts  = {
     modEnabled              = nil,
