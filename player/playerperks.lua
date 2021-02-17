@@ -49,6 +49,11 @@ function PlayerPerks.GetPerkName(perkName)
     return perk and perk:GetName() or nil
 end
 
+function PlayerPerks.GetPerkRecord(perkName)
+    local perk = CheckPerk("PlayerPerks.GetPerkRecord():", perkName)
+    return perk and perk:GetRecord() or nil
+end
+
 function PlayerPerks.HasPerk(perkName)
     local perk = CheckPerk("PlayerPerks.HasPerk():", perkName)
     -- We can't use the return approach similar to PlayerPerks.GetPerkMaxLevel()
