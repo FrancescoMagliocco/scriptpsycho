@@ -12,6 +12,12 @@ function Perk:GetCurLevel()
     return Player.GetDevData():GetPerkLevel(self[3])
 end
 
+function Perk:IncreaseLevel()
+    Player.GetDevData():IncreasePerkLevel(
+        Perk.GetPerkAreaIndex(self:GetPerkArea(), self[3]))
+    return true
+end
+
 function Perk:GetMaxLevel()
     return Player.GetDevData():GetPerkMaxLevel(self[3])
 end
