@@ -54,8 +54,8 @@ function PlayerPerks.GetPerkRecord(perkName)
     return perk and perk:GetRecord() or nil
 end
 
-function PlayerPerks.GetPerkAreaRecord(perkName)
-    local perk = CheckPerk("PlayerPerks.GetPerkAreaRecord():", perkName)
+function PlayerPerks.GetPerkAreaRecordForPerk(perkName)
+    local perk = CheckPerk("PlayerPerks.GetPerkAreaRecordForPerk():", perkName)
     return perk and perk:GetPerkAreaRecord() or nil
 end
 
