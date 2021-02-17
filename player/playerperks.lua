@@ -29,6 +29,16 @@ function PlayerPerks.GetPerkFromIndex(perkIndex)
     return CheckPerk("PlayerPerks.GetPerkFromIndex():", perkTable[1])
 end
 
+function PlayerPerks.GetPerkLevel(perkName)
+    local perk = CheckPerk("PlayerPerks.GetPerkLevel():", perkName)
+    return perk and perk:GetCurLevel() or nil
+end
+
+function PlayerPerks.GetPerkMaxLevel(perkName)
+    local perk = CheckPerk("PlayerPerks.GetPerkMaxLevel():", perkName)
+    return perk and perk:GetMaxLevel() or nil
+end
+
 function PlayerPerks.GetPerkIndex(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkIndex():", perkName)
     return perk and perk:GetIndex() or nil
@@ -37,16 +47,6 @@ end
 function PlayerPerks.GetPerkName(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkName():", perkName)
     return perk and perk:GetName() or nil
-end
-
-function PlayerPerks.GetPerkMaxLevel(perkName)
-    local perk = CheckPerk("PlayerPerks.GetPerkMaxLevel():", perkName)
-    return perk and perk:GetMaxLevel() or nil
-end
-
-function PlayerPerks.GetPerkLevel(perkName)
-    local perk = CheckPerk("PlayerPerks.GetPerkLevel():", perkName)
-    return perk and perk:GetCurLevel() or nil
 end
 
 function PlayerPerks.HasPerk(perkName)
