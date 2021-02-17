@@ -101,6 +101,11 @@ function PlayerPerks.UnlockPerkArea(perkArea)
     return true
 end
 
+function PlayerPerks.LockPerkAreaForPerk(perkName)
+    local perk = CheckPerk("PlayerPerks.LockPerkAreaForPerk():", perkName)
+    return perk and perk:LockPerkArea() or nil
+end
+
 function PlayerPerks.HasPerk(perkName)
     local perk = CheckPerk("PlayerPerks.HasPerk():", perkName)
     -- We can't use the return approach similar to PlayerPerks.GetPerkMaxLevel()
