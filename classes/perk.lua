@@ -42,6 +42,11 @@ function Perk:GetPerkAreaRecord()
     return Player.GetDevData():GetPerkAreaRecord(self:GetPerkArea())
 end
 
+function Perk:UnlockPerkArea()
+    Player.GetDevData():UnlockPerkArea(self:GetPerkArea())
+    return true
+end
+
 -- Becaseu there is two signatures for interal 'GetPerkPackageTDBID()', we may
 -- need to use the parameters that of the first signature if prevalence matters.
 function Perk:GetPerkPackageTDBID()
