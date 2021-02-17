@@ -80,6 +80,10 @@ function Perk:BuyPerk(giveDevPoint)
     return Player.GetDevData():BuyPerk(self[3])
 end
 
+function Perk:RemovePerk()
+    return Player.GetDevData():RemovePerk(self[3])
+end
+
 -- returns false if PerkMaxLevel < Perk current level or if Player has no Perk
 -- Dev Points
 function Perk:CanPerkBeBought()

@@ -127,6 +127,11 @@ function PlayerPerks.BuyPerk(perkName, giveDevPoint)
     return perk and perk:BuyPerk(giveDevPoint)
 end
 
+function PlayerPerks.RemovePerk(perkName)
+    local perk = CheckPerk("PlayerPerks.RemovePerk():", perkName)
+    return perk and perk:RemovePerk() or nil
+end
+
 function PlayerPerks.IsPerkUnlocked(perkName)
     local perk = CheckPerk("PlayerPerk.IsPerkUnlocked():", perkName)
     if perk then return perk:IsPerkAreaUnlocked() end
