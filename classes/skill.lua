@@ -74,7 +74,7 @@ end
 -- XXX Make sure that when implemented, that all calling functions have been
 -- updated to understand what is returned
 function Skill:SetLevel(skillLvl, levelGainReason)
-    if not skillLvl >= 0 or skillLvl > self:GetMaxLevel() then return nil end
+    if not skillLvl >= 0 or skillLvl > self:GetMaxLevel() then return end
     Player.GetDevData():SetLevel(
         self[2],skillLvl, levelGainReason or telemetryLevelGainReason.Ignore)
     return true
