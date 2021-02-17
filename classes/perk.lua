@@ -43,8 +43,12 @@ function Perk:HasPerk()
     return Player.GetDevData():HasPerk(self[3])
 end
 
--- If one wants to know if a certain perk is unlocked and can be bought, check
--- via the following function.
+-- returns false if PerkMaxLevel < Perk current level or if Player has no Perk
+-- Dev Points
+function Perk:CanPerkBeBought()
+    return Player:GetDevData():CanPerkBeBought(self[3])
+end
+
 function Perk:IsPerkAreaUnlocked()
     return Player:GetDevData():IsPerkAreaUnlocked(self:GetPerkArea())
 end
