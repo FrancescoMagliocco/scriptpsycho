@@ -31,7 +31,7 @@ end
 
 function PlayerPerks.GetPerkIndex(perkName)
     local perk = CheckPerk("PlayerPerks.GetPerkIndex():", perkName)
-    return perk and perk:GetPerkIndex() or nil
+    return perk and perk:GetIndex() or nil
 end
 
 function PlayerPerks.GetPerkName(perkName)
