@@ -21,8 +21,7 @@ function Perk:GetRecord()
 end
 
 function Perk:GetPerkArea()
-    return Player.GetDevData():GetPerkAreaIndex(
-        Player.GetDevData():GetPerkAreaFromPerk(self[3]))
+    return Player.GetDevData():GetPerkAreaFromPerk(self[3])
 end
 
 function Perk:GetPerkAreaRecord()
@@ -54,7 +53,7 @@ function Perk:IsPerkAreaUnlocked()
 end
 
 function Perk:GetProfFromPerkArea()
-    return Player.GetDevData():GetProficiencyIndexFromPerkArea(self:GetPerkArea())
+    return Player.GetDevData():GetProficiencyFromPerkArea(self:GetPerkArea())
 end
 
 -- TODO Need to add function to buy perk
