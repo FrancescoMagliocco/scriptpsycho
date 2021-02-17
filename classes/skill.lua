@@ -96,4 +96,8 @@ function Skill.GetProfIndexFromType(profType)
     return profIndex >= 0 and profIndex or nil
 end
 
+function Skill.GetDominatingProf()
+    return Player.GetDevData():GetDominatingProficiency()
+end
+
 return Skill

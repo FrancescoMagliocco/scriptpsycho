@@ -57,6 +57,11 @@ function PlayerSkills.ResetSkillLevel(skillName, areYouSure, areYouReallySure)
     return skill and skill:ResetLevel(true) or nil
 end
 
+function PlayerSkills.GetDominatingSkill()
+    return PlayerSkills.GetSkillFromIndex(
+        Skill.GetProfIndexFromType(Skill.GetDominatingProf()))
+end
+
 function PlayerSkills.init()
     for _, skillTable in ipairs(gamedataProficiencyType.GetAll()) do
         _Skills[skillTable[1]:lower():gsub("%W", "")] = Skill:new(skillTable)
