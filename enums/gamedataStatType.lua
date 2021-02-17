@@ -1,4 +1,4 @@
--- luacheck: ignore gamedataStatType Lua
+-- luacheck: ignore Lua
 local gamedataStatType = {}
 local _gamedataStatType = Lua.ReadOnly{
     Lua.ReadOnly{ "Acceleration", 0 },
@@ -1010,6 +1010,11 @@ local _gamedataStatType = Lua.ReadOnly{
 }
 
 function gamedataStatType.Get(statName)
+    if not statName then
+        print("gamedataStatType.Get():", "statName is nil")
+        return
+    end
+
     statName = statName:lower():gsub("%W", "")
     for _, statTable in ipairs(_gamedataStatType) do
         if statTable[1]:lower():gsub("%W", "") == statName then

@@ -8,6 +8,11 @@ local _gamedataLifePath = Lua.ReadOnly{
 }
 
 function gamedataLifePath.Get(lifePathName)
+    if not lifePathName then
+        print("gamedataLifePath.Get():", "lifePathName is nil")
+        return
+    end
+
     lifePathName = lifePathName:lower():gsub("%W", "")
     for _, lifePathTable in ipairs(_gamedataLifePath) do
         if  lifePathTable[1]:lower():gsub("%W", "") == lifePathName then

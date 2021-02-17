@@ -246,6 +246,11 @@ local _gamedataPerkType = Lua.ReadOnly{
 }
 
 function  gamedataPerkType.Get(perkName)
+    if not perkName then
+        print("gamedataPerkType.Get():", "perkName is nil")
+        return
+    end
+
     perkName = perkName:lower():gsub("%W", "")
     for _, perkTable in ipairs(_gamedataPerkType) do
         if perkTable[1]:lower():gsub("%W", "") == perkName then

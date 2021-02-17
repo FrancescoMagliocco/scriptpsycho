@@ -18,6 +18,11 @@ local _gamedataProfType = Lua.ReadOnly{
 }
 
 function gamedataProficiencyType.Get(profName)
+    if not profName then
+        print("gamedataProficiencyType.Get():", "profName is nil")
+        return
+    end
+
     profName = profName:lower():gsub("%W", "")
     for _, profTable in ipairs(_gamedataProfType) do
         if profTable[1]:lower():gsub("%W", "") == profName then
