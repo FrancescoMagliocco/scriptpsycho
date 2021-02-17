@@ -1,4 +1,5 @@
 -- luacheck: ignore gamedataPerkType Perk Lua gamedataPerkArea Player
+-- luacheck: ignore gamedataDevelopmentPointType
 local PlayerPerks = {}
 
 local _Perks = nil
@@ -127,6 +128,67 @@ function PlayerPerks.BuyPerk(perkName, giveDevPoint)
     return perk and perk:BuyPerk(giveDevPoint)
 end
 
+function PlayerPerks.SetPerkLevel(perkName, level, giveDevPoints)
+    if not level or level < 0 then
+        print("PlayerPerks.SetPerkLevel():", "Level must be > 0")
+        return
+    end
+
+    local perk = CheckPerk("PlayerPerks.SetPerkLevel():", perkName)
+    if not perk or perk:GetMaxLevel() < level then
+        print("PlayerPerks.SetPerkLevel():", level.." > Max level of "..perkName)
+        return
+    end
+
+    -- We use perk current level a few times, so to reduce cpu cycles, we store
+    -- it in memory
+    local curLevel = perk:GetLevel()
+    if curLevel == level then
+        print("PlayerPerks.SetPerkLevel():", perkName.." is already level: "..level)
+        return
+    end
+
+    if level < curLevel then
+        -- Pretty sure this removes all levels of perk.  What confuses me
+        -- though is in RemovePerk(),
+        -- this.m_proficiencies[perk:GetIndex()].spentPerkPoints -= 1
+        if not perk:RemovePerk() then
+            print("PlayerPerks.SetPerkLevel():", "Failed to remove perk: "..perkName)
+            return
+        end
+
+        -- No need to have the loop in two different locations
+        goto buyperk
+    end
+
+    -- If perk can't be bought and the user doesn't want to be given dev points,
+    if not perk:CanPerkBeBought() and not giveDevPoints then
+        print("PlayerPerks.SetPerkLevel():", "No dev points to spend!")
+        return
+    end
+
+    -- Modify level to be the amount of levels needed to reach level
+    level = curLevel - level
+    -- We are still checking if user wants to be given points because
+    -- perk:CanPerkBeBought() might have returned true and giveDevPoints might
+    -- have been false
+    if giveDevPoints then
+        Player.GetDevData():AddDevelopmentPoint(
+            level, gamedataDevelopmentPointType.Primary)
+    end
+
+    -- Probably really frowned upon
+    ::buyperk::
+    for _ = 1, level do
+        if not perk:BuyPerk() then
+            print("PlayerPerks.SetPerkLevel():", "Failed to buy perk")
+            return
+        end
+    end
+
+    return true
+end
+
 function PlayerPerks.RemovePerk(perkName)
     local perk = CheckPerk("PlayerPerks.RemovePerk():", perkName)
     return perk and perk:RemovePerk()
@@ -136,8 +198,6 @@ function PlayerPerks.IsPerkUnlocked(perkName)
     local perk = CheckPerk("PlayerPerk.IsPerkUnlocked():", perkName)
     if perk then return perk:IsPerkAreaUnlocked() end
 end
-
--- TODO Need to add function to buy perk
 
 function PlayerPerks.init()
     for _, perkTable in ipairs(gamedataPerkType.GetAll()) do
