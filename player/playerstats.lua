@@ -25,6 +25,8 @@ local CheckStatAndValue = function(funcName, statName, value)
     return CheckStat(funcName, statName)
 end
 
+-- Returns the current value of stat statName, give that statName is a valid
+-- Stat.  If statName is not a valid Stat, nil is returned.
 function PlayerStats.GetStat(statName)
     if not CheckStat("PlayerStats.GetStat()", statName) then return end
 
@@ -36,6 +38,14 @@ function PlayerStats.GetStat(statName)
     return statValue
 end
 
+-- Checks if value is within the min and max range that is allowed for Stat
+-- statName, given that Stat statName is a valid Stat.  If statName is not a
+-- valid Stat, nil is returned.
+--
+-- We are not doing a check for statName as we are using this function in other
+-- functions, and we don't want a message to be displayed more than once.
+--
+-- XXX TODO FIXME Add check for if statMin and statMax are nil
 -- The check on statName and value are the responsibility of the caller
 function PlayerStats.ValueWithinRange(statName, value)
     local statMin   = Stats.GetStatLimitMin(statName)
