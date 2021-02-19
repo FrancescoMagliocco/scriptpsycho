@@ -45,6 +45,11 @@ end
 
 -- We are converting the returnined values tonumber to avoid any issues that may
 -- occure like in StatsSys.GetStatDetailsForStat()
+--
+-- XXX This may not be a huge issue, but if the value of a stat is not a number
+-- (Though, I'm almost certain that the value of all stats is a number), there
+-- will probably be an error.  If I remember correctly, there is a way to check
+-- internally if a stat is boolean or not.
 function StatsSys.GetStatLimitMin(statName)
     local statDetailedData = StatsSys.GetStatDetailsForStat(statName)
     return statDetailedData and tonumber(statDetailedData.limitMin) or nil
