@@ -45,10 +45,12 @@ end
 -- We are not doing a check for statName as we are using this function in other
 -- functions, and we don't want a message to be displayed more than once.
 --
--- XXX TODO FIXME Add check for if statMin and statMax are nil
 -- The check on statName and value are the responsibility of the caller
 function PlayerStats.ValueWithinRange(statName, value)
     local statMin   = Stats.GetStatLimitMin(statName)
+    -- If statMin is nil, there is no need to check if statMax is nil as odds
+    -- are if statMin is nil, it is because statName is not a valid Stat.
+    if not statMin then return end
     local statMax   = Stats.GetStatLimitMax(statName)
     return statMin <= value and statMax >= value, statMin, statMax
 end
