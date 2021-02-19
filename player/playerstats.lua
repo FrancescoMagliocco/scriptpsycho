@@ -55,6 +55,9 @@ function PlayerStats.ValueWithinRange(statName, value)
     return statMin <= value and statMax >= value, statMin, statMax
 end
 
+-- XXX TODO FIXME Because we are checking if a value is within the range a
+-- particular stat is valid for, the Value check in CheckStatAndValue may not be
+-- needed as some stats allow for negative values to be their value.
 function PlayerStats.ModStat(statName, value)
     -- TODO We could just use this function to determine if statName is a valid
     -- stat, or we could created a dedicated function.
