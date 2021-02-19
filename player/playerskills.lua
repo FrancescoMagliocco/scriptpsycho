@@ -14,6 +14,8 @@ local CheckSkill = function(funcName, skillName)
     return skill
 end
 
+-- If skillName is a valid Skill, the corresponding Skill be returned.  If
+-- skillName is not a valid Skills, nil will be returned.
 function PlayerSkills.Get(skillName)
     return  _Skills[skillName:lower():gsub("%W", "")]
 end
@@ -29,16 +31,32 @@ function PlayerSkills.GetSkillFromIndex(skillIndex)
     return CheckSkill("PlayerSkills.GetSkillFromIndex():", skillTable[1])
 end
 
+-- If skillName is a valid Skill, the max level of Skill skillName is returned.
+-- If skillName is not a valid Skill, nil is returned.
+--
+-- The max skill level in most cases is not the actual highest level a Skill can
+-- be, but the level of which Attribute a Skill is tied to.  The level of a
+-- Skill can not be higher than the Attribute the Skill is tied to.
 function PlayerSkills.GetSkillMaxLevel(skillName)
     local skill = CheckSkill("PlayerSkills.GetSkillMaxLevel():", skillName)
     return skill and skill:GetMaxLevel() or nil
 end
 
+-- If skillName is a valid Skill, the current level of Skill skillName is
+-- returned.  If skillName is not a valid skill, nil is returned.
 function PlayerSkills.GetSkillLevel(skillName)
     local skill = CheckSkill("PlayerSkills.GetSkillLevel():", skillName)
     return skill and skill:GetCurLevel() or nil
 end
 
+-- Sets the level of Skill skillName to level.  Level must be >= 0 and <= to the
+-- max level Skill skillName can be.  If skillName is not a valid Skill, nil is
+-- returned.  If level is < 0 or > the max level of Skill skillName, nil is
+-- returned.  If all goes well, true is returned.
+-- XXX TODO Include more information for this documentation
+--
+-- If levelGainReason is not specified, telemetryLevelGainReason.Ignore is used.
+-- XXX TODO Include documentation of levelGainReason
 function PlayerSkills.SetSkillLevel(skillName, level, levelGainReason)
     local skill = CheckSkill("PlayerSkills.SetSkillLevel():", skillName)
     if skill and skill:SetLevel(
@@ -57,6 +75,7 @@ function PlayerSkills.ResetSkillLevel(skillName, areYouSure, areYouReallySure)
     return skill and skill:ResetLevel(true) or nil
 end
 
+-- Returns the Skill that is of the highest level.
 function PlayerSkills.GetDominatingSkill()
     return PlayerSkills.GetSkillFromIndex(
         Skill.GetProfIndexFromType(Skill.GetDominatingProf()))
