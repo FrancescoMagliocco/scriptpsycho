@@ -97,13 +97,13 @@ function PlayerPerks.GetPerkAreaIndexForPerk(perkName)
     return perk and Perk.GetPerkAreaIndex(perk:GetPerkArea())
 end
 
--- XXX perkArea should probably be perkAreaName
--- If perkArea is a valid PerkArea, the internal index of PerkArea perkArea is
--- returned.  If perkArea is not a valid PerkArea, nil is returned.
-function PlayerPerks.GetPerkAreaIndex(perkArea)
-    local perkAreaTable = gamedataPerkArea.Get(perkArea)
+-- If perkAreaName is a valid PerkArea, the internal index of PerkArea
+-- perkAreaName is returned.  If perkAreaName is not a valid PerkArea, nil is
+-- returned.
+function PlayerPerks.GetPerkAreaIndex(perkAreaName)
+    local perkAreaTable = gamedataPerkArea.Get(perkAreaName)
     if not perkAreaTable then
-        print("PlayerPerks.GetPerkArea():", perkArea.." is not a valid perkArea")
+        print("PlayerPerks.GetPerkArea():", perkAreaName.." is not a valid perkArea")
         return
     end
 
@@ -118,14 +118,14 @@ function PlayerPerks.GetPerkAreaRecordForPerk(perkName)
 end
 
 
--- XXX perkArea should probably be perkAreaName
--- If perkArea is a valid PerkArea, the internal index of PerkArea perkArea is
--- returned.  If perkArea is not a valid PerkArea, nil is returned.
+-- If perkAreaName is a valid PerkArea, the internal index of PerkArea
+-- perkAreaName is returned.  If perkAreaName is not a valid PerkArea, nil is
+-- returned.
 --
 -- I feel like this should be in the class perk...  But then again at the
 -- sametime, I think this is in the correct spot..
-function PlayerPerks.GetPerkAreaRecord(perkArea)
-    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkArea)
+function PlayerPerks.GetPerkAreaRecord(perkAreaName)
+    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkAreaName)
     -- Maybe display message... Even though PlayerPerks.GetPerkAreaIndex() would
     -- have displayed a message if perkArea was not a valid perkArea?..
     if not perkAreaIndex then return end
@@ -146,9 +146,9 @@ function PlayerPerks.UnlockPerkAreaForPerk(perkName)
     return perk and perk:UnlockPerkArea()
 end
 
--- If perkArea is a valid PerkArea, PerkArea perkArea will be unlocked and true
--- will be returned.  If perkArea is not a valid PerkArea nil is returned.
--- will be returned.
+-- If perkAreaName is a valid PerkArea, PerkArea perkAreaName will be unlocked
+-- and true will be returned.  If perkAreaName is not a valid PerkArea nil is
+-- returned. will be returned.
 --
 -- XXX Not sure if this actually works and if the requirments of PerkArea
 -- perkArea still need to be met.
@@ -156,8 +156,8 @@ end
 -- We are using the internal functions to unlock a PerkArea, so we are returning
 -- true here unlike how in PlayerPerks.UnlockPerkAreaForPerk(), the returned
 -- value was the outcome of perk and perk:UnlockPerkArea()
-function PlayerPerks.UnlockPerkArea(perkArea)
-    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkArea)
+function PlayerPerks.UnlockPerkArea(perkAreaName)
+    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkAreaName)
     if not perkAreaIndex then return end
     Player.GetDevData():UnlockPerkArea(perkAreaIndex)
     return true
@@ -171,14 +171,14 @@ function PlayerPerks.LockPerkAreaForPerk(perkName)
     return perk and perk:LockPerkArea()
 end
 
--- If perkArea is a valid PerkArea, PerkArea perkArea will be locked and true
--- will be returned.  If perkArea is not a valid PerkArea, either nil is
--- returned.
+-- If perkAreaName is a valid PerkArea, PerkArea perkAreaName will be locked
+-- and true will be returned.  If perkAreaName is not a valid PerkArea,
+-- either nil is returned.
 --
 -- XXX Not sure if this actually works and if the requirements of PerkArea
 -- perkArea still need to be met.
-function PlayerPerks.LockPerkArea(perkArea)
-    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkArea)
+function PlayerPerks.LockPerkArea(perkAreaName)
+    local perkAreaIndex = PlayerPerks.GetPerkAreaIndex(perkAreaName)
     if not perkAreaIndex then return end
     Player.GetDevData():LockPerkArea(perkAreaIndex)
     return true
